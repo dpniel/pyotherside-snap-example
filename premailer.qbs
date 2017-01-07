@@ -11,13 +11,20 @@ Project {
 
     // Location to store the apps qml ui
     // you can override this either here or from the qbs snapcraft plugin
-    property string qmlDir: "/usr/share/premailer"
+    property string qmlDir: ""
 
-    // Create a
+    /* This Product creates a qml Plugin containing the PreMailer.qml transfomer
+       and includes the required python packages which we download from pypi.
+
+       We will make use of Ubuntu Cores Python3 standard library so we don't have to include
+       those in the snap. and instead we carefully pick out the python directories we need
+       to reduce the snap size.
+      */
     Product {
         name: "PreMailer Plugin"
         type: "premailer-qml-plugin"
 
+        // This probe does all the hard work of fetching from pypi
         Probe {
             id: pip3
             // Declare your list of pypi packages here
@@ -26,10 +33,11 @@ Project {
             ]
             // DO NOT EDIT MANUALLY.
             property bool installed: false
-            // The directory packages are installed to
+            // The directory where you want to install pypi packages
             property string sourceDir: project.sourceDirectory + "/pylibs"
 
             configure: {
+                // we use the Process service to run pip3
                 var p = new Process();
                 p.setWorkingDirectory(path)
                 // override pip's idea of --user location
@@ -46,7 +54,8 @@ Project {
             }
         }
 
-        // Here we define the
+        // Here we define the python directories we want to include in our
+        // qml plugin.
         Group {
             // Only enable this if pip3 installed correctly
             condition: pip3.installed
@@ -54,8 +63,6 @@ Project {
             prefix: pip3.sourceDir + "/lib/python3.5/site-packages/"
             // List the package dirs you want in the qml plugin
             // The idea here is to only declare what's _required_ to reduce our size a bit
-            // Snap core comes bundled with the py3 standard library so we make use
-            // of that instead of shipping our own.
             files: [
                 "premailer/**",
                 "cssselect/**",
@@ -85,7 +92,8 @@ Project {
             files: "plugin/qmldir"
             fileTags: ["premailer-component"]
         }
-
+        // Install directive for all the qml files and qmldir
+        // these are installed to the same location as the python dirs.
         Group {
             fileTagsFilter: "premailer-component"
             qbs.install: true
@@ -94,6 +102,8 @@ Project {
         }
     }
 
+    // Create a seperate product for the Ubuntu UI
+    //TODO: change this for a QtGuiApplication and binary launcher
     Product {
         name: "PreMailer UI"
         type: "premailer-ui"
