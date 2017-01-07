@@ -1,0 +1,7 @@
+parts/plugins/__pycache__
+pylibs
+prime
+stage
+*.qbs.user
+*.snap
+
