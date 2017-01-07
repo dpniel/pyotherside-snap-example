@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+X-Ubuntu-Touch=true
+Name=PreMailer-example
+Exec=premailer-example
+Icon=${SNAP}/meta/gui/pholder.png
+X-Ubuntu-Splash-Color=#F5F5F5
