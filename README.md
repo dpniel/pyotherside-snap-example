@@ -3,14 +3,15 @@
 This is a simple ubuntu app that inlines CSS of a html document using the
 premailer python library and pyotherside.
 
-This example uses the qbs build tool with a custom snapcraft plugin
-but you can always use cmake/qmake if you prefer and just adapting the logic
-in app.qbs for your specific tool.
+This example uses the qbs build tool with a custom snapcraft plugin for no other
+reason than i love being able to script my builds in QML. It's a dream!
+But you can always use cmake/qmake if you prefer and just adapting the logic
+in `app.qbs` for your specific tool.
 
 The example also makes use of the ubuntu-app-platform snap content interface
-to reduce snap size
+to reduce snap size.
 
-I have extensively documented app.qbs so hopefully you shouldn't have
+I have extensively documented `app.qbs` so hopefully you shouldn't have
 any problems with this.
 
 ## Setup
