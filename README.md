@@ -49,6 +49,8 @@ Firstly I don't know what qbs support is like in the ubuntu-sdk-ide
 as i use qtcreator from upstream. But it should work i suppose?? or
 you can just do it all from the command line.
 
+### QtCreator
+
 To run locally you will need to build and install pyotherside.
 This is because it needs to be compiled against the qt libs from the
 overlay ppa which the pyotherside in the archive is not (AFAIK).
@@ -63,6 +65,8 @@ $ sudo make install
 
 You should then be able to open `app.qbs` with qtcreator and run
 the "PreMailer App"
+
+### Command line
 
 Or if you want to do it from the command line you will need
 to setup a qt toolchain.
