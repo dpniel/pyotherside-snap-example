@@ -2,7 +2,7 @@ import qbs
 import qbs.Process
 
 /*
-  I Was going to tidy these up into nice Qbs modules like
+  I Was going to tidy this up into nice Qbs modules like
   PythonQmlPlugin{} and UbuntuApplication {} and hide the internals
   but for clarity I thought it best to show it all in one file.
   It's basic qml/js, nothing too unfamiliar going on, so you
