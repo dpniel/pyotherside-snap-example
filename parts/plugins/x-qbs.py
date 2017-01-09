@@ -85,9 +85,9 @@ class QbsPlugin(snapcraft.BasePlugin):
                   '-f', self.sourcedir,
                   self.options.build_variant,
                   'qbs.installRoot:' + self.installdir,
-		  # NOTE: here we set the locations for the plugin and UI code #
+		  # NOTE: here we set the locations for the plugin and binary #
                   'project.qmlPluginDir:/usr/lib/' + arch + '/qt5/qml',
-                  'project.qmlDir:/usr/share/premailer',
+                  'project.binDir:/usr/bin',
                   ##############################################################
                   'profile:' + buildProfile] + self.options.options, 
                  env=env)

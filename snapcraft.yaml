@@ -12,7 +12,7 @@ confinement: strict # use 'strict' once you have the right plugs and slots
 
 apps:
     premailer-example:
-        command: desktop-launch qmlscene $SNAP/usr/share/premailer/Main.qml
+        command: desktop-launch $SNAP/usr/bin/premailer
         plugs:
             - platform
             - opengl
