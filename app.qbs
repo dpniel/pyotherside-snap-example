@@ -32,7 +32,7 @@ Project {
 
     property string qmlPluginDir: ""
     PropertyOptions {
-        name: "binDir"
+        name: "qmlPluginDir"
         description: "
             The location to install the qml plugin to.
 
@@ -50,7 +50,7 @@ Project {
        We will make use of Ubuntu Cores Python3 standard library so we don't have to include
        those in the snap. and instead we carefully pick out the python directories we need
        to reduce the snap size.
-      */
+    */
     Product {
         name: project.name + " Plugin"
         type: "python-qml-plugin"
@@ -152,7 +152,7 @@ Project {
     /*
       Create the app binary. We make use of the qt resource system
       for including the qml/js files in the application binary and not
-      have to care about there location within the snap. Just remember
+      have to care about their location within the snap. Just remember
       to prefix your file paths with 'qrc:/' in your qml files.
 
       e.g Qt.resolvedUrl("qrc:///qml/MyComponent.qml")
@@ -188,7 +188,7 @@ Project {
                 "main.cpp"
             ]
         }
-        // app.qrc contains all the qml/js UI files
+        // app.qrc contains all the qml/js UI files.
         // You will find them in qtcreator in the UI Files folder
         // These get compiled into the application binary
         // and are accessed using the qt resource system.

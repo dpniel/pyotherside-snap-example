@@ -24,26 +24,6 @@ $ sudo apt update && sudo apt full-upgrade
 $ sudo apt install snapcraft qbs git ubuntu-sdk-libs
 ```
 
-## Run locally
-
-Firstly I don't know what qbs support is like in the ubuntu-sdk-ide
-as i use qtcreator from upstream. But it should work i suppose??
-
-To run locally you will first need to build and install pyotherside
-This is because it needs to be compiled against the qt libs from the
-overlay ppa which the pyotherside in the archive is not.
-
-```bash
-$ git clone https://github.com/thp/pyotherside.git
-$ cd pyotherside
-$ qmake
-$ make
-$ sudo make install
-```
-
-You should then be able to open `app.qbs` with qtcreator and run
-the "PreMailer App"
-
 ## Build a snap
 
 Building the snap is somewhat easier than running on desktop as snapcraft
@@ -62,6 +42,46 @@ $ snapcraft snap
 $ snap install --dangerous premailer-example_0.1_amd64.snap
 $ premailer-example
 ```
+
+## Run locally
+
+Firstly I don't know what qbs support is like in the ubuntu-sdk-ide
+as i use qtcreator from upstream. But it should work i suppose?? or
+you can just do it all from the command line.
+
+To run locally you will first need to build and install pyotherside
+This is because it needs to be compiled against the qt libs from the
+overlay ppa which the pyotherside in the archive is not (AFAIK).
+
+```bash
+$ git clone https://github.com/thp/pyotherside.git
+$ cd pyotherside
+$ qmake
+$ make
+$ sudo make install
+```
+
+You should then be able to open `app.qbs` with qtcreator and run
+the "PreMailer App"
+
+Or if you want to do it from the command line you will first need
+too setup your qt toolchain
+
+```base
+$ export QT_SELECT=qt5
+$ qbs setup-toolchains --detect
+$ qbs setup-qt /usr/bin/qmake xenialqt5
+```
+
+You will now have a build profile called `xenialqt5`
+
+```bash
+$ cd pyotherside-snap-example
+$ qbs build profile:xenailqt5 debug
+$ qbs run profile:xenailqt5
+```
+
+And BOOM! it should run.
 
 ## Some sample input
 
