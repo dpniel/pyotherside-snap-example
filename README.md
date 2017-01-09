@@ -11,6 +11,7 @@ $ sudo apt install snapcraft git
 $ git clone https://code.dekkoproject.org/dpniel/pyotherside-snap-example.git
 $ cd pyotherside-snap-example
 $ snapcraft snap
+$ snap install --edge --devmode ubuntu-app-platform
 $ snap install --dangerous premailer-example_0.1_amd64.snap
 $ premailer-example
 ```
